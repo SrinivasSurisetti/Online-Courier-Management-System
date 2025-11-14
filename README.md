@@ -2,7 +2,35 @@
 
 Complete full-stack courier management application with role-based access control, PDF receipts, and city-based staff management.
 
-## Project Structure
+
+## 📌 Features
+
+### 🔐 Authentication & Security
+- JWT-based login & role authorization  
+- BCrypt password hashing  
+- Role-based navigation (USER / STAFF / ADMIN)  
+- City-based access control for staff  
+
+### 📦 User Features
+- Create courier shipments  
+- Download PDF receipt  
+- Track courier status  
+- Update profile  
+- View shipment history  
+
+### 👨‍💼 Staff Features
+- View pickups from assigned city  
+- Assign shipments  
+- Mark pickup & delivery  
+- View staff activity logs  
+
+### 🛠 Admin Features
+- Approve/Reject staff requests  
+- View staff details  
+- Overall courier status summary  
+- Track courier by ID  
+- 
+## 🏗️ Project Structure
 
 ```
 courier_task/
@@ -54,39 +82,42 @@ courier_task/
 <img width="1511" height="799" alt="Screenshot 2025-11-14 184026" src="https://github.com/user-attachments/assets/c3e3e43a-265f-446f-aa18-8f9bc96039dc" />
 <img width="1497" height="694" alt="Screenshot 2025-11-14 184155" src="https://github.com/user-attachments/assets/dbcde8ab-271f-4ed0-8398-22b930bc7c75" />
 
-## Technology Stack
+## 🛠 Technology Stack
 
 ### Backend
-- **Spring Boot 3.5.7** with Java 21
-- **Spring Security** with JWT authentication
-- **Spring Data JPA** with Hibernate
-- **MySQL 8.x** database
-- **OpenPDF** for PDF receipt generation
-- **BCrypt** password hashing
-- **Maven** for dependency management
+- Java 21  
+- Spring Boot 3.5.7  
+- Spring Security + JWT  
+- Spring Data JPA + Hibernate  
+- MySQL 8.x  
+- OpenPDF (PDF receipts)  
+- Maven  
 
 ### Frontend
-- **Vanilla JavaScript** (ES6+)
-- **HTML5** and **CSS3**
-- **Fetch API** for AJAX calls
-- Responsive design with CSS Grid/Flexbox
+- HTML5  
+- CSS3  
+- Vanilla JavaScript  
+- Fetch API (AJAX)  
+- CSS Grid / Flexbox responsive UI  
 
-## Prerequisites
+---
 
-- **Java 21** or higher
-- **Maven 3.9+**
-- **MySQL 8.0+** running on localhost:3306
-- **Web browser** (Chrome, Firefox, Edge, Safari)
-- **Python 3** (optional, for serving frontend) OR any static file server
+## 📦 Prerequisites
 
-## Setup Instructions
+- Java 21+  
+- Maven 3.9+  
+- MySQL 8.0+  
+- Python/Node.js OR Live Server for frontend  
 
-### 1. Database Setup
+---
 
-Open MySQL client and run:
+## 🗄️ Database Setup
 
 ```sql
 mysql -u root -p
+SOURCE /path/to/schema.sql;
+SOURCE /path/to/sample_data.sql;
+
 ```
 
 Enter your MySQL root password (configured as `1111` in application.properties), then execute:
@@ -186,13 +217,6 @@ Open browser:
 
 ### USER Role
 **Top Menu**: User Home | Update Profile | Send Courier | Courier Status | Logout
-
-**Features**:
-- Create courier shipments with Indian city selection
-- Track courier status by ID
-- Download PDF receipts
-- Update profile information
-- View list of all sent couriers
 
 **Test Account**: `alice@ocms.com` / `Admin@123`
 
