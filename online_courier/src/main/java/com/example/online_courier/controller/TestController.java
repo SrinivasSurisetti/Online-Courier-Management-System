@@ -78,4 +78,40 @@ public class TestController {
         
         return ResponseEntity.ok(result);
     }
+
+    @PostMapping("/create-admin")
+    public ResponseEntity<Map<String, String>> createAdmin() {
+        try {
+            // Check if admin already exists
+            if (userRepository.findByEmail("admin@ocms.com").isPresent()) {
+                Map<String, String> result = new HashMap<>();
+                result.put("message", "Admin user already exists");
+                return ResponseEntity.ok(result);
+            }
+
+            // Create admin user with password ocsm@123
+            User admin = new User();
+            admin.setName("Admin User");
+            admin.setUsername("admin");
+            admin.setEmail("admin@ocms.com");
+            admin.setPassword(passwordEncoder.encode("ocsm@123"));
+            admin.setRole(User.Role.ADMIN);
+            admin.setStatus(User.UserStatus.ACTIVE);
+            
+            userRepository.save(admin);
+            
+            Map<String, String> result = new HashMap<>();
+            result.put("message", "Admin user created successfully");
+            result.put("email", "admin@ocms.com");
+            result.put("password", "ocsm@123");
+            result.put("role", "ADMIN");
+            result.put("status", "ACTIVE");
+            
+            return ResponseEntity.ok(result);
+        } catch (Exception e) {
+            Map<String, String> error = new HashMap<>();
+            error.put("error", "Failed to create admin user: " + e.getMessage());
+            return ResponseEntity.status(500).body(error);
+        }
+    }
 }

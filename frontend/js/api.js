@@ -1,5 +1,6 @@
 // API utilities and authentication
-const API_BASE = "http://localhost:8080/api";
+// For Vercel production, this should point to your backend URL
+const API_BASE = window.ENV?.API_BASE || "http://localhost:8080/api";
 
 // Auth helpers
 function getToken() {
@@ -38,10 +39,10 @@ function isAuthenticated() {
 async function api(path, options = {}) {
   const headers = options.headers || {};
 
-  // Add auth token if available
+  // Add auth token if available (but not for login requests)
   //here bearer is used to send the token to the server why bearer is used cuase it's a standard way to send the token to the server
   const token = getToken();
-  if (token) {
+  if (token && !path.includes("/auth/login")) {
     headers["Authorization"] = `Bearer ${token}`;
   }
 

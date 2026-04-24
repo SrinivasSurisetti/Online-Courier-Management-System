@@ -5,6 +5,118 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login - OCMS</title>
     <link rel="stylesheet" href="css/styles.css" />
+    <style>
+      .demo-credentials-wrapper {
+        width: 100%;
+        max-width: 900px;
+        margin: 0 auto 60px auto;
+        padding: 32px;
+        background-color: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 16px;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+      }
+      .demo-credentials-wrapper h3 {
+        margin: 0 0 8px 0;
+        font-size: 22px;
+        color: #0f172a;
+        text-align: center;
+        font-weight: 700;
+        letter-spacing: -0.025em;
+      }
+      .demo-credentials-wrapper p {
+        text-align: center;
+        font-size: 15px;
+        color: #64748b;
+        margin: 0 0 32px 0;
+      }
+      .demo-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 24px;
+      }
+      .demo-column {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .demo-column-header {
+        font-size: 15px;
+        font-weight: 700;
+        color: #334155;
+        margin: 0 0 8px 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      .demo-icon {
+        width: 32px;
+        height: 32px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        font-size: 16px;
+        color: white;
+      }
+      .icon-admin { background: linear-gradient(135deg, #ef4444, #dc2626); box-shadow: 0 2px 4px rgba(239,68,68,0.3); }
+      .icon-staff { background: linear-gradient(135deg, #f59e0b, #d97706); box-shadow: 0 2px 4px rgba(245,158,11,0.3); }
+      .icon-user { background: linear-gradient(135deg, #3b82f6, #2563eb); box-shadow: 0 2px 4px rgba(59,130,246,0.3); }
+      
+      .cred-card {
+        cursor: pointer;
+        padding: 16px 20px;
+        background: #ffffff;
+        border: 1px solid #cbd5e1;
+        border-radius: 12px;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+      }
+      .cred-card:hover {
+        border-color: #3b82f6;
+        box-shadow: 0 8px 16px -4px rgba(59, 130, 246, 0.15);
+        transform: translateY(-3px);
+      }
+      .cred-card::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; width: 4px; height: 100%;
+        background: #3b82f6;
+        opacity: 0;
+        transition: opacity 0.2s;
+      }
+      .cred-card:hover::before {
+        opacity: 1;
+      }
+      .cred-email {
+        font-size: 15px;
+        font-weight: 600;
+        color: #0f172a;
+        margin-bottom: 6px;
+      }
+      .cred-pwd {
+        font-size: 13px;
+        color: #64748b;
+        font-family: inherit;
+        background: #f1f5f9;
+        display: inline-block;
+        padding: 4px 8px;
+        border-radius: 6px;
+      }
+      
+      /* form autofill flash animation */
+      @keyframes flash-bg {
+        0% { background-color: rgba(59, 130, 246, 0.15); }
+        100% { background-color: transparent; }
+      }
+      .flash-active {
+        animation: flash-bg 0.6s ease-out;
+        border-radius: 8px;
+      }
+    </style>
   </head>
   <body>
     <header class="header" id="topnav"></header>
@@ -62,21 +174,57 @@
           >
         </p>
 
-        <div
-          style="
-            margin-top: 16px;
-            padding: 12px;
-            background: var(--bg);
-            border-radius: 6px;
-            font-size: 13px;
-          "
-        >
-          <!-- <strong>Test Credentials:</strong><br>
-                <strong>Admin:</strong> admin / admin<br>
-                <strong>User:</strong> alice@ocms.com / Admin@123<br>
-                <strong>Staff:</strong> staff.mumbai@ocms.com / Admin@123 -->
+      </div>
+
+      <!-- Demo Credentials UI -->
+      <div class="demo-credentials-wrapper">
+        <h3>✨ Demo Credentials</h3>
+        <p>Click any card to auto-fill the login form</p>
+        
+        <div class="demo-grid">
+          <!-- Admin Column -->
+          <div class="demo-column">
+            <h4 class="demo-column-header">
+              <span class="demo-icon icon-admin">🛡️</span> Admin
+            </h4>
+            <div class="cred-card" onclick="fillCredentials('ADMIN', 'admin@ocms.com', 'ocms@123')">
+              <div class="cred-email">admin@ocms.com</div>
+              <div class="cred-pwd">🔑 ocms@123</div>
+            </div>
+          </div>
+
+          <!-- Staff Column -->
+          <div class="demo-column">
+            <h4 class="demo-column-header">
+              <span class="demo-icon icon-staff">🚚</span> Staff
+            </h4>
+            <div class="cred-card" onclick="fillCredentials('STAFF', 'staff.mumbai@ocms.com', 'ocms@123')">
+              <div class="cred-email">staff.mumbai@ocms.com</div>
+              <div class="cred-pwd">🔑 ocms@123</div>
+            </div>
+            <div class="cred-card" onclick="fillCredentials('STAFF', 'staff.delhi@ocms.com', 'ocms@123')">
+              <div class="cred-email">staff.delhi@ocms.com</div>
+              <div class="cred-pwd">🔑 ocms@123</div>
+            </div>
+          </div>
+
+          <!-- User Column -->
+          <div class="demo-column">
+            <h4 class="demo-column-header">
+              <span class="demo-icon icon-user">👤</span> User
+            </h4>
+            <div class="cred-card" onclick="fillCredentials('USER', 'alice@ocms.com', 'ocms@123')">
+              <div class="cred-email">alice@ocms.com</div>
+              <div class="cred-pwd">🔑 ocms@123</div>
+            </div>
+            <div class="cred-card" onclick="fillCredentials('USER', 'bob@ocms.com', 'ocms@123')">
+              <div class="cred-email">bob@ocms.com</div>
+              <div class="cred-pwd">🔑 ocms@123</div>
+            </div>
+          </div>
         </div>
       </div>
+      
     </main>
 
     <script src="js/api.js"></script>
@@ -111,6 +259,22 @@
           emailInput.placeholder = "email@example.com";
         }
       });
+
+      // Interactive auto-fill function
+      function fillCredentials(role, email, pwd) {
+        roleSelect.value = role;
+        roleSelect.dispatchEvent(new Event('change')); // Trigger event to update hints
+        emailInput.value = email;
+        document.getElementById("password").value = pwd;
+        
+        // Visual feedback
+        form.classList.remove("flash-active"); // Reset if clicked multiple times
+        void form.offsetWidth; // Trigger reflow
+        form.classList.add("flash-active");
+        
+        // Scroll smoothly to form
+        form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
 
       form.addEventListener("submit", async (e) => {
         e.preventDefault();
