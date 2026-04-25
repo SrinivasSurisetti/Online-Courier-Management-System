@@ -49,6 +49,7 @@
                     ${links.map(link => `
                         <a href="${link.href}" ${link.click ? 'data-logout="true"' : ''}>${link.text}</a>
                     `).join('')}
+                    <a href="index.html" class="nav-logo-link"><img src="images/logo.png" alt="OCMS Logo" class="nav-logo" /></a>
                 </div>
             </div>
         `;

@@ -64,6 +64,37 @@ body {
     margin-left: auto;
 }
 
+/* Nav Logo */
+.nav-logo-link {
+    margin-left: auto;
+    padding: 4px !important;
+    display: flex;
+    align-items: center;
+    background: none !important;
+}
+.nav-logo {
+    height: 40px;       /* keep base size */
+    transform: scale(2.4);  /* visually bigger */
+    transform-origin: right center;
+}
+
+.nav-logo-link:hover {
+    background: none !important;
+}
+
+.nav-logo {
+    height: 36px;
+    width: auto;
+    border-radius: 6px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    opacity: 0.9;
+}
+
+.nav-logo:hover {
+    transform: scale(1.08);
+    opacity: 1;
+}
+
 /* Container */
 .container {
     max-width: 1200px;

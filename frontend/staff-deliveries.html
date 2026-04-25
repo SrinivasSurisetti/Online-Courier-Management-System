@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Deliveries - OCMS</title>
     <link rel="stylesheet" href="css/styles.css">
-</head>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚚</text></svg>"/>
+  </head>
 <body>
     <header class="header" id="topnav"></header>
     
@@ -59,7 +60,7 @@
                             <p><strong>Weight:</strong> ${courier.weight} kg</p>
                         </div>
                         <div class="courier-actions">
-                            <button class="btn btn-small btn-success" onclick="markDelivered('${courier.courierId}')">✓ Deliver Courier</button>
+                            <button class="btn btn-small btn-success" onclick="markDelivered('${courier.courierId}')">✔ Deliver Courier</button>
                         </div>
                     </div>
                 `).join('');
