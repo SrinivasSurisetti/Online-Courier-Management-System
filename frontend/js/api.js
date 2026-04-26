@@ -1,9 +1,9 @@
 // API utilities and authentication
 // For Vercel production, this should point to your backend URL
-// const API_BASE = window.ENV?.API_BASE || "https://online-courier-management-system-backend.onrender.com/api";
+const API_BASE = window.ENV?.API_BASE || "https://online-courier-management-system-backend.onrender.com/api";
 
 //To run local
-const API_BASE = window.ENV?.API_BASE || "http://localhost:8080/api";
+//const API_BASE = window.ENV?.API_BASE || "http://localhost:8080/api";
 
 // Auth helpers
 function getToken() {
